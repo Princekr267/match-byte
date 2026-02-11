@@ -1,4 +1,4 @@
-/* =============================================
+﻿/* =============================================
    MatchByte — Production Cyberpunk UI
    ============================================= */
 
@@ -240,9 +240,40 @@ body {
   .feed-grid { grid-template-columns: 1fr 1fr; }
 }
 
- . g u e s t - d i v i d e r   {   d i s p l a y :   f l e x ;   a l i g n - i t e m s :   c e n t e r ;   j u s t i f y - c o n t e n t :   c e n t e r ;   m a r g i n :   2 0 p x   0 ;   c o l o r :   # 7 a 7 a a 0 ;   f o n t - s i z e :   0 . 8 r e m ;   l e t t e r - s p a c i n g :   1 p x ;   } 
- . g u e s t - d i v i d e r : : b e f o r e ,   . g u e s t - d i v i d e r : : a f t e r   {   c o n t e n t :   ' ' ;   h e i g h t :   1 p x ;   b a c k g r o u n d :   r g b a ( 2 5 5 , 2 5 5 , 2 5 5 , 0 . 1 ) ;   f l e x :   1 ;   m a r g i n :   0   1 0 p x ;   } 
- . g u e s t - b t n   {   b a c k g r o u n d :   t r a n s p a r e n t ;   b o r d e r :   1 p x   s o l i d   r g b a ( 2 5 5 , 2 5 5 , 2 5 5 , 0 . 2 ) ;   c o l o r :   # 7 a 7 a a 0 ;   w i d t h :   1 0 0 % ;   p a d d i n g :   1 2 p x ;   b o r d e r - r a d i u s :   8 p x ;   c u r s o r :   p o i n t e r ;   f o n t - f a m i l y :   ' R a j d h a n i ' ,   s a n s - s e r i f ;   t r a n s i t i o n :   0 . 3 s ;   } 
- . g u e s t - b t n : h o v e r   {   b o r d e r - c o l o r :   # f f f ;   c o l o r :   # f f f ;   b a c k g r o u n d :   r g b a ( 2 5 5 , 2 5 5 , 2 5 5 , 0 . 0 5 ) ;   } 
-  
- 
+
+.guest-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  color: #7a7aa0;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.guest-divider::before,
+.guest-divider::after {
+  content: '';
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  flex: 1;
+  margin: 0 10px;
+}
+
+.guest-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #7a7aa0;
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Rajdhani', sans-serif;
+  transition: 0.3s;
+}
+
+.guest-btn:hover {
+  border-color: #fff;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
