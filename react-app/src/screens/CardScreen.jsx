@@ -115,10 +115,10 @@ export default function CardScreen({ recommendations, loading, onFinish, onBack,
         {/* Next Card (Preview) */}
         {nextCard && (
           <div className="match-card behind-card">
-             {nextCard.image ? (
-                <img src={nextCard.image} alt={nextCard.name} className="card-img" />
+             {(nextCard.image || nextCard.poster) ? (
+                <img src={nextCard.image || nextCard.poster} alt={nextCard.name || nextCard.title} className="card-img" />
              ) : (
-                <div className="card-emoji">{nextCard.emoji}</div>
+                <div className="card-emoji">{nextCard.emoji || '🎬'}</div>
              )}
           </div>
         )}
@@ -138,25 +138,25 @@ export default function CardScreen({ recommendations, loading, onFinish, onBack,
           <motion.div className="swipe-indicator nope" style={{ opacity: bgNope }}>NOPE</motion.div>
 
           <div className="card-content">
-            {current.image ? (
+            {(current.image || current.poster) ? (
               <div className="img-wrapper">
-                 <img src={current.image} alt={current.name} className="card-img" loading="eager" />
+                 <img src={current.image || current.poster} alt={current.name || current.title} className="card-img" loading="eager" />
               </div>
             ) : (
-              <div className="card-emoji">{current.emoji}</div>
+              <div className="card-emoji">{current.emoji || '🎬'}</div>
             )}
             
             <div className="card-info">
-              <h2 className="card-name">{current.name}</h2>
-              <p className="card-desc">{current.desc}</p>
+              <h2 className="card-name">{current.name || current.title}</h2>
+              <p className="card-desc">{current.desc || current.category || ''}</p>
               
               <div className="card-meta">
-                <span>{current.meta1 || 'N/A'}</span>
-                <span>{current.meta2 || 'N/A'}</span>
+                <span>{current.meta1 || current.year || current.area || ''}</span>
+                <span>{current.meta2 || current.rating ? `⭐ ${current.rating}` : ''}</span>
               </div>
               
               <div className="card-tags">
-                {current.tags.slice(0,3).map(t => (
+                {(current.tags || current.genres || []).slice(0,3).map(t => (
                   <span key={t} className="card-tag">{t}</span>
                 ))}
               </div>

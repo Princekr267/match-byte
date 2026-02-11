@@ -1,15 +1,24 @@
 const router = require('express').Router();
-const authMiddleware = require('../middleware/auth');
 const movies = require('../data/movies');
+const jwt = require('jsonwebtoken');
+const User = require('../models/User');
 
-// Middleware to optionally attach user, but don't block
+// Optional auth: attaches user if token present, otherwise continues as guest
 const optionalAuth = async (req, res, next) => {
+  const header = req.headers.authorization;
+  if (!header || !header.startsWith('Bearer ')) {
+    req.user = null;
+    return next(); // Guest — no token, just continue
+  }
   try {
-    await authMiddleware(req, res, () => { next(); });
+    const token = header.split(' ')[1];
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.id).select('-password');
+    req.user = user || null;
   } catch {
     req.user = null;
-    next();
   }
+  next();
 };
 
 // GET /api/recommend/movies 

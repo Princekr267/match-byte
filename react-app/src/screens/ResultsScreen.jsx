@@ -69,15 +69,15 @@ export default function ResultsScreen({ picks, mode, tags, total, onRestart, sou
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
               >
-                {item.image ? (
-                  <img src={item.image} alt={item.name} className="result-img" />
+              {(item.image || item.poster) ? (
+                  <img src={item.image || item.poster} alt={item.name || item.title} className="result-img" />
                 ) : (
-                  <div className="card-emoji">{item.emoji}</div>
+                  <div className="card-emoji">{item.emoji || '🎬'}</div>
                 )}
                 <div className="result-info">
-                  <h3>{item.name}</h3>
+                  <h3>{item.name || item.title}</h3>
                   <div className="card-tags">
-                     {item.tags.slice(0,3).map(t => <span key={t} className="card-tag">{t}</span>)}
+                     {(item.tags || item.genres || []).slice(0,3).map(t => <span key={t} className="card-tag">{t}</span>)}
                   </div>
                 </div>
               </motion.div>
